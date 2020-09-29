@@ -1,0 +1,54 @@
+
+section h1 {
+	text-decoration: underline;
+}
+.project-name {
+	display: inline;
+}
+.project-description {
+	font-style: italic;
+}
+
+
+
+.js-navbutton {	
+	position: absolute;
+	width: 10vmax;
+	height: 4vmax;
+	padding: 0;
+	/*
+	* When we set "absolute" width and height like this,
+	* text centering of the button label starts to break.
+	* Clearing the padding seems to work but it starts failing under 10vw.
+	*/
+	
+	background: #DDF;
+	color: #42445F;
+	/*
+	* Here, we depart from system default colours.
+	*
+	* Base colour is #DDF. 
+	* I'd like a darker 'secondary' colour for borders and text.
+	*
+	* Used https://learnui.design/tools/accessible-color-generator.html -
+	* asked it to give me closest to #DDF, that contrasts enough against
+	* #DDF to meet AAA guidelines. Result is #42445F.
+	*/
+	
+	border: 0.4vmax solid #42445F;
+	border-radius: 4vmax;
+	font-size: 1.5vmax;
+	
+	cursor: pointer;
+	
+	top: -10%; opacity: 0;
+	transition: top ease 3s, opacity ease-in 2s;
+}
+
+#js-navbutton-contact {
+	left: 5%;
+}
+
+#js-navbutton-projects {
+	left: calc(5% + 12vmax);
+}
