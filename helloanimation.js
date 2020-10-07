@@ -4,7 +4,7 @@ const data = { };
 const navButtons = {
 	"Contact": undefined,
 	"Projects": undefined
-}
+};
 /*
 * Intentionally using undefined. We're not defining them yet,
 * but I'd just like to list the identifiers here, for reference.
@@ -25,14 +25,39 @@ const pages = {
 			}
 		}
 	}
-}
+};
+
+const NAVBUTTON_CLASS = "js-navbutton";
+const SELECTED_NAVBUTTON_CLASS = "js-navbutton-selected";
 
 
 
 //  \\  //  \\  //  \\  //  \\  //  \\  //  \\
 
 function setPage(pageName) {
-	// Change look of the buttons?
+	function changeSelectedNavButton(newSelectedPageName) {
+		for (var [pageName, navButton] of Object.entries(navButtons)) {
+			navButton.setAttribute(
+				"class",
+				pageName === newSelectedPageName
+					? NAVBUTTON_CLASS + " selected"
+					: NAVBUTTON_CLASS
+			);
+		}
+	}
+
+	function makeCurrentPageElementsInvisible() {
+		
+	}
+	
+	function makePageElementsVisible(pageName) {
+		// Each page has a unique layout, so we're going to hardcode
+		// loading logic for each possible page, rather than going generic.
+	}
+
+	changeSelectedNavButton(pageName);
+	makeCurrentPageElementsInvisible(pageName);
+	makePageElementsVisible(pageName);
 }
 
 
@@ -90,19 +115,22 @@ function removeOriginalHtmlElements() {
 function initialiseNewHtmlElements() {
 	// The data needs to be ready when this is called.
 	
-	// Initialise navigation buttons.
-	const NAVBUTTON_CLASS = "js-navbutton";	
-	navButtons["Contact"] = document.createElement("button");
-	navButtons["Contact"].setAttribute("onclick", "setPage('Contact')");
-	navButtons["Contact"].setAttribute("class", NAVBUTTON_CLASS);
-	navButtons["Contact"].setAttribute("id", NAVBUTTON_CLASS + "-contact");
-	navButtons["Contact"].innerText = "Contact";
-	document.body.append(navButtons["Contact"]);
-	navButtons["Projects"] = document.createElement("button");
-	navButtons["Projects"].setAttribute("onclick", "setPage('Projects')");
-	navButtons["Projects"].setAttribute("class", NAVBUTTON_CLASS);
-	navButtons["Projects"].setAttribute("id", NAVBUTTON_CLASS + "-projects");	
-	navButtons["Projects"].innerText = "Projects";
+	var contactNavButton = document.createElement("button");
+	contactNavButton.innerText = "Contact";
+	contactNavButton.setAttribute("onclick", "setPage('Contact')");
+	contactNavButton.setAttribute("class", NAVBUTTON_CLASS);
+	contactNavButton.setAttribute("id", NAVBUTTON_CLASS + "-contact");
+	contactNavButton.setAttribute("alt", "Opens Contact page");
+	navButtons["Contact"] = contactNavButton;
+	document.body.append(contactNavButton);
+	
+	var projectsNavButton = document.createElement("button");
+	projectsNavButton.innerText = "Projects";
+	projectsNavButton.setAttribute("onclick", "setPage('Projects')");
+	projectsNavButton.setAttribute("class", NAVBUTTON_CLASS);
+	projectsNavButton.setAttribute("id", NAVBUTTON_CLASS + "-projects");
+	projectsNavButton.setAttribute("alt", "Opens Projects page");
+	navButtons["Projects"] = projectsNavButton;
 	document.body.append(navButtons["Projects"]);
 	// Initialisation-wise there aren't really any differences between them.
 	// Maybe we should break this into a loop over the nav buttons.

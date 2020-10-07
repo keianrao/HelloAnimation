@@ -45,6 +45,22 @@ section h1 {
 	transition: top ease 3s, opacity ease-in 2s;
 }
 
+.js-navbutton.selected {
+	background: #42445F;
+	color: #DDF;
+}
+
+.js-navbutton:focus, .js-navbutton.selected:focus {
+	outline: 3px double #42445F;
+	outline-offset: 2px;
+	text-decoration: underline;
+}
+
+.js-navbutton::-moz-focus-inner {
+	border: none;
+}
+
+
 #js-navbutton-contact {
 	left: 5%;
 }
